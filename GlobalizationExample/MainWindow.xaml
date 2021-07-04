@@ -1,0 +1,46 @@
+﻿<Window x:Class="WpfPlayground.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfPlayground"
+        xmlns:resources="clr-namespace:WpfPlayground.Properties"
+        mc:Ignorable="d"
+        Title="{x:Static resources:Resources.MainWindow_WindowTitle}" Height="450" Width="800" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*" />
+            <RowDefinition Height="0.4*" />
+            <RowDefinition Height="0.4*" />
+            <RowDefinition Height="0.4*" />
+            <RowDefinition Height="0.4*" />
+            <RowDefinition Height="1.5*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.25*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Label Content="{x:Static resources:Resources.MainWindow_ChangeCulture}"  Margin="0,0,10,0" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" />
+        <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+            <ComboBox ItemsSource="{Binding Cultures}" SelectedItem="{Binding SelectedCulture}" IsSynchronizedWithCurrentItem="True" Margin="10,10,200,10" Grid.Row="0" Grid.Column="1" />
+            <Button Content="{x:Static resources:Resources.MainWindow_ChangeButtonText}" Command="{Binding ChangeCultureCommand}" Margin="10,0,200,10"  />
+        </StackPanel>
+        
+        <Label Content="{x:Static resources:Resources.MainWindow_BookName}" Grid.Row="1"  Margin="0,0,10,0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" />
+        <TextBlock Text="{Binding BookName}" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" />
+
+        <TextBlock Text="{x:Static resources:Resources.MainWindow_Price}" Grid.Row="2" Grid.Column="0"  Margin="0,0,10,0" VerticalAlignment="Center" HorizontalAlignment="Right" />
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <TextBlock Text="{Binding Price, StringFormat=C}" HorizontalAlignment="Left"  VerticalAlignment="Center" />
+            <TextBlock Text="{Binding Price, StringFormat=P}" HorizontalAlignment="Left"  VerticalAlignment="Center" />
+        </StackPanel>
+
+        <Label Content="{x:Static resources:Resources.MainWindow_PublishingDate}" Grid.Row="3" Grid.Column="0" Margin="0,0,10,0" VerticalAlignment="Center" HorizontalAlignment="Right"  />
+        <TextBlock Text="{Binding PurchaseDate, StringFormat=D}" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" />
+
+        <Label Content="{x:Static resources:Resources.MainWindow_BookRating}"  Margin="0,0,10,0" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" />
+        <ComboBox ItemsSource="{Binding Ratings}" Margin="0,0,200,0" Grid.Row="4" Grid.Column="1" />
+
+    </Grid>
+</Window>
