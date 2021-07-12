@@ -3,7 +3,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Markup;
 
-namespace WpfPlayground
+namespace GlobalizationExample
 {
     /// <summary>
     /// Interaction logic for App.xaml

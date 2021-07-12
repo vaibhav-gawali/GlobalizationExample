@@ -6,7 +6,7 @@ using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WpfPlayground
+namespace GlobalizationExample
 {
     public class LocalizedDescriptionAttribute : DescriptionAttribute
     {

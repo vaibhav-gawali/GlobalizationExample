@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WpfPlayground.Properties {
+namespace GlobalizationExample.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace WpfPlayground.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WpfPlayground.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GlobalizationExample.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -88,15 +88,6 @@ namespace WpfPlayground.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change Culture.
-        /// </summary>
-        public static string MainWindow_ChangeCulture {
-            get {
-                return ResourceManager.GetString("MainWindow_ChangeCulture", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Supported Languages.
         /// </summary>
         public static string MainWindow_Label_SupportedLanguages {
@@ -120,6 +111,42 @@ namespace WpfPlayground.Properties {
         public static string MainWindow_PublishingDate {
             get {
                 return ResourceManager.GetString("MainWindow_PublishingDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Culture.
+        /// </summary>
+        public static string MainWindow_Ribbon_ChangeCultureTab_Title {
+            get {
+                return ResourceManager.GetString("MainWindow_Ribbon_ChangeCultureTab_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _About.
+        /// </summary>
+        public static string MainWindow_Ribbon_HelpTab_About_ButtonText {
+            get {
+                return ResourceManager.GetString("MainWindow_Ribbon_HelpTab_About_ButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Globalization / Localization example application..
+        /// </summary>
+        public static string MainWindow_Ribbon_HelpTab_About_Message {
+            get {
+                return ResourceManager.GetString("MainWindow_Ribbon_HelpTab_About_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        public static string MainWindow_Ribbon_HelpTab_Title {
+            get {
+                return ResourceManager.GetString("MainWindow_Ribbon_HelpTab_Title", resourceCulture);
             }
         }
         

@@ -18,9 +18,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WpfPlayground.Properties;
+using GlobalizationExample.Properties;
 
-namespace WpfPlayground
+namespace GlobalizationExample
 {
     [TypeConverter(typeof(EnumDescriptionTypeConverter))]
     public enum Rating
@@ -75,19 +75,48 @@ namespace WpfPlayground
             public void Execute(object parameter)
             {
                 CultureInfo culture = _window.SelectedCulture;
-                Thread.CurrentThread.CurrentCulture = culture;
-                Thread.CurrentThread.CurrentUICulture = culture;
+                Thread uiThread = Thread.CurrentThread;
+                uiThread.CurrentCulture = culture;
+                uiThread.CurrentUICulture = culture;
+                CultureInfo.DefaultThreadCurrentCulture = culture;
+                CultureInfo.DefaultThreadCurrentUICulture = culture;
 
                 MainWindow window = new MainWindow(_window.SelectedCulture, _window.Cultures);
                 window.FlowDirection = culture.TextInfo.IsRightToLeft ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
                 window.Language = XmlLanguage.GetLanguage(culture.Name);
                 App.Current.MainWindow = window;
+                
+                window.Language = XmlLanguage.GetLanguage(culture.IetfLanguageTag);
                 window.Show();
                 _window.Close();
                 //_window.RestartWithCulture = _window.SelectedCulture;
                 //
             }
         }
+
+        private class AboutMessageDisplayCommand : ICommand
+        {
+            public event EventHandler CanExecuteChanged;
+
+            MainWindow _window;
+            public AboutMessageDisplayCommand(MainWindow window)
+            {
+                _window = window;
+            }
+
+            public bool CanExecute(object parameter)
+            {
+                return true;
+            }
+
+            public void Execute(object parameter)
+            {
+                MessageBoxOptions options = CultureInfo.CurrentCulture.TextInfo.IsRightToLeft ? MessageBoxOptions.RtlReading : MessageBoxOptions.None;
+                MessageBox.Show(_window, Properties.Resources.MainWindow_Ribbon_HelpTab_About_Message, _window.Title
+                    , MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.OK, options);
+            }
+        }
+
         public MainWindow() : this(null, null)
         {
 
@@ -104,6 +133,7 @@ namespace WpfPlayground
 
             SelectedCulture = selectedCulture ?? (_cultures.Count > 0 ? _cultures[0] : null);
             ChangeCultureCommand = new SwitchCultureCommand(this);
+            AboutCommand = new MainWindow.AboutMessageDisplayCommand(this);
         }
 
         public DateTime PurchaseDate { get { return DateTime.Now; } }
@@ -129,6 +159,8 @@ namespace WpfPlayground
         }
 
         public ICommand ChangeCultureCommand { get; }
+
+        public ICommand AboutCommand { get; }
 
         void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
